@@ -1,11 +1,11 @@
 package eventos.comandos;
 
-import actors.InvaderProjectile;
-import actors.InvaderShip;
-import game.Game;
-import resources.SoundEffectTracks;
-import utilities.Command;
-import utilities.SoundEffectPlayer;
+import atores.InvaderProjectile;
+import atores.InvaderShip;
+import mainProgram.MainProgram;
+//import resources.SoundEffectTracks;
+import utilitarios.Command;
+//import utilitarios.SoundEffectPlayer;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -23,6 +23,6 @@ public class InvaderShipShoot implements Command {
             (int)(randomInvaderBounds2D.getX() + InvaderShip.WIDTH / 2 * InvaderShip.DRAWING_SCALE),
             (int)(randomInvaderBounds2D.getY()));
         game.allInvaderProjectiles.add(new InvaderProjectile(projectileLocation));
-        SoundEffectPlayer.Play(SoundEffectTracks.GetTrackPath(SoundEffectTracks.Track.InvaderShoot));
+        //SoundEffectPlayer.Play(SoundEffectTracks.GetTrackPath(SoundEffectTracks.Track.InvaderShoot));
     }
 }

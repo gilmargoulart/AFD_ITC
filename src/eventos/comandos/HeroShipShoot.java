@@ -1,11 +1,11 @@
 package eventos.comandos;
 
-import actors.HeroShip;
-import actors.HeroProjectile;
-import game.Game;
-import resources.SoundEffectTracks;
-import utilities.Command;
-import utilities.SoundEffectPlayer;
+import atores.HeroShip;
+import atores.HeroProjectile;
+import mainProgram.MainProgram;
+//import resources.SoundEffectTracks;
+import utilitarios.Command;
+//import utilitarios.SoundEffectPlayer;
 
 import java.awt.*;
 
@@ -21,6 +21,6 @@ public class HeroShipShoot implements Command {
             (int)(heroShipLocation.getX() + HeroShip.WIDTH / 2 * HeroShip.DRAWING_SCALE),
             (int)(heroShipLocation.getY()));
         game.allHeroProjectiles.add(new HeroProjectile(projectileLocation));
-        SoundEffectPlayer.Play(SoundEffectTracks.GetTrackPath(SoundEffectTracks.Track.HeroShoot));
+        //SoundEffectPlayer.Play(SoundEffectTracks.GetTrackPath(SoundEffectTracks.Track.HeroShoot));
     }
 }

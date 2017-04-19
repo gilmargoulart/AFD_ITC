@@ -1,7 +1,7 @@
 package eventos.comandos;
 
-import game.Game;
-import utilities.Command;
+import mainProgram.MainProgram;
+import utilitarios.Command;
 
 public class MoveInvadersToNextLineAndChangeDirectionOfMovement implements Command {
     @Override

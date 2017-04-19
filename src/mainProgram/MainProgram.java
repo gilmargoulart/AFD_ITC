@@ -1,21 +1,21 @@
 package mainProgram;
 
-import actors.HeroShip;
-import actors.InvaderProjectile;
-import actors.InvaderShip;
-import actors.HeroProjectile;
-import collision.CollisionDetection;
-import events.EventResolution;
-import events.commands.PlayIntroSound;
-import events.commands.InvaderShipShoot;
-import ui.GameOverScreenOverlay;
-import ui.StatusRibbon;
-import utilities.DynamicElement;
-import utilities.GameTimer;
-import utilities.GraphicalShape;
-import utilities.InputHandler;
-import vfx.Explosion;
-import vfx.VfxManager;
+import atores.HeroShip;
+import atores.InvaderProjectile;
+import atores.InvaderShip;
+import atores.HeroProjectile;
+import colisao.DetectorColisao;
+import eventos.ResolucaoEventos;
+import eventos.comandos.PlayIntroSound;
+import eventos.comandos.InvaderShipShoot;
+import interfaceGrafica.GameOverScreenOverlay;
+import interfaceGrafica.StatusRibbon;
+import utilitarios.DynamicElement;
+import utilitarios.GameTimer;
+import utilitarios.GraphicalShape;
+import utilitarios.InputHandler;
+import efeitosVisuais.Explosao;
+import efeitosVisuais.GerenciadorVfx;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +26,7 @@ import java.util.*;
 import java.util.List;
 import java.util.stream.Stream;
 
+@SuppressWarnings("serial")
 public class MainProgram extends Canvas implements Runnable, GameTimer {
     public static final int CANVAS_WIDTH = 500;
     public static final int CANVAS_HEIGHT = 700;
@@ -53,13 +54,13 @@ public class MainProgram extends Canvas implements Runnable, GameTimer {
     public final List<HeroProjectile> allHeroProjectiles;
     public final List<InvaderShip> allInvaderShips;
     public final List<InvaderProjectile> allInvaderProjectiles;
-    public final List<Explosion> allExplosionVFX;
+    public final List<Explosao> allExplosionVFX;
 
     private final long StartTimeInSeconds = java.time.LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
     private final InputHandler input;
-    private final CollisionDetection collisionDetection;
-    private final EventResolution eventResolution;
-    private final VfxManager vfxManager;
+    private final DetectorColisao collisionDetection;
+    private final ResolucaoEventos eventResolution;
+    private final GerenciadorVfx vfxManager;
 
     public MainProgram(){
         setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
@@ -77,7 +78,7 @@ public class MainProgram extends Canvas implements Runnable, GameTimer {
         this.input = new InputHandler(this);
         this.statusRibbon = new StatusRibbon(this);
         this.gameOverScreenOverlay = new GameOverScreenOverlay(this);
-        this.eventResolution = new EventResolution(this);
+        this.eventResolution = new ResolucaoEventos(this);
         this.heroShip = new HeroShip(this.eventResolution);
         this.allHeroProjectiles = new ArrayList<HeroProjectile>();
         this.allInvaderShips = new ArrayList<InvaderShip>();
@@ -85,9 +86,9 @@ public class MainProgram extends Canvas implements Runnable, GameTimer {
             for(int column = 0; column < 7; column++)
                 this.allInvaderShips.add(new InvaderShip(row, column));
         this.allInvaderProjectiles = new ArrayList<InvaderProjectile>();
-        this.allExplosionVFX = new ArrayList<Explosion>();
-        this.collisionDetection = new CollisionDetection(this, this.eventResolution);
-        this.vfxManager = new VfxManager(this);
+        this.allExplosionVFX = new ArrayList<Explosao>();
+        this.collisionDetection = new DetectorColisao(this, this.eventResolution);
+        this.vfxManager = new GerenciadorVfx(this);
     }
 
     public synchronized void start(){

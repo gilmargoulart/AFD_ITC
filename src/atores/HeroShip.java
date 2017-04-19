@@ -1,7 +1,7 @@
 package atores;
 
-import colisao.CollisionDetection;
-import eventos.EventResolution;
+import colisao.DetectorColisao;
+import eventos.ResolucaoEventos;
 import eventos.comandos.HeroShipShoot;
 import utilitarios.*;
 import mainProgram.MainProgram;
@@ -18,11 +18,11 @@ public class HeroShip implements GraphicalShape, CollisionalShape, DynamicElemen
     private static final int DELTA_X = 5;
     private static final int SHOOT_COOLDOWN_UPDATE_TIME = 30;
 
-    private final EventResolution eventResolution;
+    private final ResolucaoEventos eventResolution;
     private final Area currentShape;
     private long timeUntilShootingAvailable = 0;
 
-    public HeroShip(EventResolution eventResolution) {
+    public HeroShip(ResolucaoEventos eventResolution) {
         Point location = new Point((int)(MainProgram.CANVAS_WIDTH/2 - (WIDTH/2 * DRAWING_SCALE)), MainProgram.CANVAS_HEIGHT - HEIGHT);
         this.eventResolution = eventResolution;
         this.currentShape = generateShape(location);
@@ -30,7 +30,7 @@ public class HeroShip implements GraphicalShape, CollisionalShape, DynamicElemen
 
     public void MoveLeft(){
         AffineTransform transform = new AffineTransform();
-        if(CollisionDetection.IsShapeAtEdge_Left(this))
+        if(DetectorColisao.IsShapeAtEdge_Left(this))
             transform.translate(1 - this.currentShape.getBounds2D().getMinX(), 0);
         else
             transform.translate(- DELTA_X, 0);
@@ -38,7 +38,7 @@ public class HeroShip implements GraphicalShape, CollisionalShape, DynamicElemen
     }
     public void MoveRight(){
         AffineTransform transform = new AffineTransform();
-        if(CollisionDetection.IsShapeAtEdge_Right(this))
+        if(DetectorColisao.IsShapeAtEdge_Right(this))
             transform.translate(MainProgram.CANVAS_WIDTH - this.currentShape.getBounds2D().getMaxX() - 1, 0);
         else
             transform.translate(DELTA_X, 0);

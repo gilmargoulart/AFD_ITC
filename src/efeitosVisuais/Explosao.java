@@ -1,9 +1,9 @@
 package efeitosVisuais;
 
 
-import utilities.CollisionalShape;
-import utilities.DynamicElement;
-import utilities.GraphicalShape;
+import utilitarios.CollisionalShape;
+import utilitarios.DynamicElement;
+import utilitarios.GraphicalShape;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -11,7 +11,7 @@ import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 
 
-public class Explosion implements GraphicalShape, CollisionalShape, DynamicElement {
+public class Explosao implements GraphicalShape, CollisionalShape, DynamicElement {
     private static final Color COLOR = Color.decode("#AE81FF");
 
     private final int FRAME_RATE = 4;
@@ -20,7 +20,7 @@ public class Explosion implements GraphicalShape, CollisionalShape, DynamicEleme
     private boolean isFinished = false;
     private final Area[] frames;
 
-    public Explosion(Point location){
+    public Explosao(Point location){
         frames = new Area[]{
             getAnimationFrame(0, location),
             getAnimationFrame(1, location),

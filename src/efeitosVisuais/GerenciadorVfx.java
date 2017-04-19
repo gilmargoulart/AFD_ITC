@@ -1,23 +1,23 @@
 package efeitosVisuais;
 
-import game.Game;
+import mainProgram.MainProgram;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class VfxManager {
+public class GerenciadorVfx {
     private final MainProgram game;
 
-    public VfxManager(MainProgram game) {
+    public GerenciadorVfx(MainProgram game) {
         this.game = game;
     }
 
     public void Update(){
-        List<Explosion> finishedExplosions =
+        List<Explosao> finishedExplosions =
             game.allExplosionVFX.stream()
-            .filter(Explosion::IsFinished)
+            .filter(Explosao::IsFinished)
             .collect(Collectors.toList());
-        for (Explosion finishedExplosion: finishedExplosions){
+        for (Explosao finishedExplosion: finishedExplosions){
             int indexOfExplosion= game.allExplosionVFX.indexOf(finishedExplosion);
             game.allExplosionVFX.remove(indexOfExplosion);
         }

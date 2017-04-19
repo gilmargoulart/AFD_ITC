@@ -1,11 +1,11 @@
 package eventos.comandos;
 
-import game.Game;
-import utilities.Command;
+import mainProgram.MainProgram;
+import utilitarios.Command;
 
-public class EndGame implements Command {
+public class FimJogo implements Command {
     private final boolean playerWon;
-    public EndGame(boolean playerWon) {
+    public FimJogo(boolean playerWon) {
         this.playerWon = playerWon;
     }
 

@@ -1,17 +1,17 @@
 package eventos;
 
-import game.Game;
-import utilities.Command;
+import mainProgram.MainProgram;
+import utilitarios.Command;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventResolution {
+public class ResolucaoEventos {
     private final List<Command> actions = new ArrayList<Command>();
     private final List<Command> actionsBuffer = new ArrayList<Command>();
     private final MainProgram game;
 
-    public EventResolution(MainProgram game) {
+    public ResolucaoEventos(MainProgram game) {
         this.game = game;
     }
 

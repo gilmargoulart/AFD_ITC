@@ -1,7 +1,7 @@
 package interfaceGrafica;
 
-import game.Game;
-import utilities.GraphicalShape;
+import mainProgram.MainProgram;
+import utilitarios.GraphicalShape;
 
 import java.awt.*;
 import java.awt.geom.Area;
@@ -20,7 +20,7 @@ public class GameOverScreenOverlay implements GraphicalShape{
 
         graphics.setColor(Color.white);
         graphics.setFont(new Font("Arial Black", Font.PLAIN, 25));
-        String message = game.PlayerWon ? "YOU WON" : "YOU LOST";
+        String message = game.PlayerWon ? "GANHOU" : "PERDEU";
         graphics.drawString(message, MainProgram.CANVAS_WIDTH/2 - 60, (int)(MainProgram.CANVAS_HEIGHT*0.4));
     }
 }

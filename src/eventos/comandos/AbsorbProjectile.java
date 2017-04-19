@@ -1,8 +1,8 @@
 package eventos.comandos;
 
-import actors.HeroProjectile;
-import game.Game;
-import utilities.Command;
+import atores.HeroProjectile;
+import mainProgram.MainProgram;
+import utilitarios.Command;
 
 public class AbsorbProjectile implements Command {
     private final HeroProjectile heroProjectileThatHit;
@@ -16,4 +16,5 @@ public class AbsorbProjectile implements Command {
         int indexOfDeadProjectile = game.allHeroProjectiles.indexOf(heroProjectileThatHit);
         game.allHeroProjectiles.remove(indexOfDeadProjectile);
     }
+
 }

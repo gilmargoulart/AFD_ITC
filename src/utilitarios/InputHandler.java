@@ -1,6 +1,6 @@
 package utilitarios;
 
-import game.Game;
+import mainProgram.MainProgram;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

@@ -1,8 +1,8 @@
 package eventos.comandos;
 
-import actors.InvaderProjectile;
-import game.Game;
-import utilities.Command;
+import atores.InvaderProjectile;
+import mainProgram.MainProgram;
+import utilitarios.Command;
 
 public class RemoveInvaderProjectileOutOfWindow implements Command {
     private final InvaderProjectile invaderProjectileOutOfWindow;

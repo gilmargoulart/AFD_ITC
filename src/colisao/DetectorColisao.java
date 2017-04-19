@@ -1,7 +1,7 @@
 package colisao;
 
 import atores.*;
-import eventos.EventResolution;
+import eventos.ResolucaoEventos;
 import eventos.comandos.*;
 import mainProgram.MainProgram;
 import utilitarios.CollisionalShape;
@@ -9,13 +9,13 @@ import utilitarios.CollisionalShape;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 
-public class CollisionDetection {
+public class DetectorColisao {
     private final MainProgram game;
-    private final EventResolution eventResolution;
+    private final ResolucaoEventos eventResolution;
 
-    public CollisionDetection(
+    public DetectorColisao(
             MainProgram game,
-            EventResolution eventResolution) {
+            ResolucaoEventos eventResolution) {
         this.game = game;
         this.eventResolution = eventResolution;
     }
@@ -25,7 +25,7 @@ public class CollisionDetection {
             if(IsShapeOutsideWindow(invaderProjectile))
                 eventResolution.Push(new RemoveInvaderProjectileOutOfWindow(invaderProjectile));
             else if(areTwoShapesInCollision(game.heroShip, invaderProjectile))
-                eventResolution.Push(new EndGame(false));
+                eventResolution.Push(new FimJogo(false));
         }
 
         for (HeroProjectile heroProjectile : game.allHeroProjectiles){
@@ -40,17 +40,17 @@ public class CollisionDetection {
 
         boolean isAnyInvaderAtLeftOrRightEdge =
             game.allInvaderShips.stream()
-            .anyMatch(invader -> CollisionDetection.IsShapeAtEdge_Left(invader) || CollisionDetection.IsShapeAtEdge_Right(invader));
+            .anyMatch(invader -> DetectorColisao.IsShapeAtEdge_Left(invader) || DetectorColisao.IsShapeAtEdge_Right(invader));
         if(isAnyInvaderAtLeftOrRightEdge)
             eventResolution.Push(new MoveInvadersToNextLineAndChangeDirectionOfMovement());
 
-        boolean isAnyInvaderAtBottomEdge = game.allInvaderShips.stream().anyMatch(CollisionDetection::IsShapeAtEdge_Bottom);
+        boolean isAnyInvaderAtBottomEdge = game.allInvaderShips.stream().anyMatch(DetectorColisao::IsShapeAtEdge_Bottom);
         if(isAnyInvaderAtBottomEdge)
-            eventResolution.Push(new EndGame(false));
+            eventResolution.Push(new FimJogo(false));
 
         boolean isInvaderInCollisionWithHero = game.allInvaderShips.stream().anyMatch(invader -> areTwoShapesInCollision(invader, game.heroShip));
         if(isInvaderInCollisionWithHero)
-            eventResolution.Push(new EndGame(false));
+            eventResolution.Push(new FimJogo(false));
     }
 
     public static boolean IsShapeAtEdge_Left(CollisionalShape shape){

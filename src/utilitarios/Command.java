@@ -1,6 +1,6 @@
 package utilitarios;
 
-import game.Game;
+import mainProgram.MainProgram;
 
 public interface Command {
     void Apply(MainProgram game);

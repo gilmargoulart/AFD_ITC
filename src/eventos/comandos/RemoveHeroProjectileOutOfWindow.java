@@ -1,8 +1,8 @@
 package eventos.comandos;
 
-import actors.HeroProjectile;
-import game.Game;
-import utilities.Command;
+import atores.HeroProjectile;
+import mainProgram.MainProgram;
+import utilitarios.Command;
 
 public class RemoveHeroProjectileOutOfWindow implements Command {
     private final HeroProjectile heroProjectileOutOfWindow;
