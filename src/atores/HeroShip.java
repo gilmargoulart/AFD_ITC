@@ -16,7 +16,7 @@ public class HeroShip implements GraphicalShape, CollisionalShape, DynamicElemen
     public static final int HEIGHT = 80;
     public static final double DRAWING_SCALE = 0.5;
     private static final int DELTA_X = 5;
-    private static final int SHOOT_COOLDOWN_UPDATE_TIME = 30;
+    private static int SHOOT_COOLDOWN_UPDATE_TIME = MainProgram.CONFIG.getShipShootingCooldownTime();
 
     private final ResolucaoEventos eventResolution;
     private final Area currentShape;

@@ -22,5 +22,6 @@ public class GameOverScreenOverlay implements GraphicalShape{
         graphics.setFont(new Font("Arial Black", Font.PLAIN, 25));
         String message = game.PlayerWon ? "GANHOU" : "PERDEU";
         graphics.drawString(message, MainProgram.CANVAS_WIDTH/2 - 60, (int)(MainProgram.CANVAS_HEIGHT*0.4));
+        
     }
 }

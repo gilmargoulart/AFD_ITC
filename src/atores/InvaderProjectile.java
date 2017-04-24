@@ -7,11 +7,11 @@ import java.awt.*;
 import java.awt.geom.*;
 
 public class InvaderProjectile implements GraphicalShape, CollisionalShape, DynamicElement {
-    private static final int WIDTH = 8;
-    private static final int HEIGHT = 20;
+    //private static final int WIDTH = 8;
+    private static final int HEIGHT = 90;
     private static final double DRAWING_SCALE = 1;
     private static final int DELTA_Y = 5;
-    private static final Color COLOR = Color.decode("#AE81FF");
+    private static final Color COLOR = Color.decode("#00FFFF"); //Amarelo
     private final Point location;
 
     private final int FRAME_RATE = 2;

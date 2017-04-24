@@ -14,12 +14,12 @@ public class InvaderShip implements GraphicalShape, CollisionalShape, DynamicEle
     public static final int HEIGHT = 80;
     public static final double DRAWING_SCALE = 0.20;
 
-    private static final int MOVEMENT_COOLDOWN_UPDATE_TIME = 2;
-    private static final Color COLOR = Color.decode("#A6E22E");
-    private static final double CONSTANT_SPEED_UP = 0.001;
+    private static final int MOVEMENT_COOLDOWN_UPDATE_TIME = 1;
+    private static final Color COLOR = Color.decode("#9225ff");
+    private static final double CONSTANT_SPEED_UP = MainProgram.CONFIG.getInvaderShipConstantSpeedUp();
 
     private Area currentShape;
-    private double delta_X = 0.5;
+    private double delta_X = 0.9;
     private boolean willChangeDirectionAfterCooldown = false;
     private long timeUntilNextMoveAvailable = 0;
 

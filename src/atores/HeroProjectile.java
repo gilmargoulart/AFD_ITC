@@ -10,10 +10,10 @@ import java.awt.geom.Area;
 
 public class HeroProjectile implements GraphicalShape, CollisionalShape, DynamicElement {
     private static final int WIDTH = 4;
-    private static final int HEIGHT = 6;
+    private static final int HEIGHT = 20;
     private static final double DRAWING_SCALE = 1;
     private static final int DELTA_Y = 5;
-    private static final Color COLOR = Color.decode("#F92672");
+    private static final Color COLOR = Color.decode("#00FF3A");
 
     private final Area shape;
 

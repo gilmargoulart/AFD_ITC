@@ -12,9 +12,9 @@ import java.awt.geom.Rectangle2D;
 
 
 public class Explosao implements GraphicalShape, CollisionalShape, DynamicElement {
-    private static final Color COLOR = Color.decode("#AE81FF");
+    private static final Color COLOR = Color.decode("#ff0000");
 
-    private final int FRAME_RATE = 4;
+    private final int FRAME_RATE = 9;
     private int timeUntilNextFrame = 0;
     private int currentFrameIndex = 0;
     private boolean isFinished = false;

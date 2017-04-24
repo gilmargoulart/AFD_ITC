@@ -10,13 +10,13 @@ import eventos.comandos.PlayIntroSound;
 import eventos.comandos.InvaderShipShoot;
 import interfaceGrafica.GameOverScreenOverlay;
 import interfaceGrafica.StatusRibbon;
+import utilitarios.Configuracao;
 import utilitarios.DynamicElement;
 import utilitarios.GameTimer;
 import utilitarios.GraphicalShape;
 import utilitarios.InputHandler;
 import efeitosVisuais.Explosao;
 import efeitosVisuais.GerenciadorVfx;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -28,14 +28,20 @@ import java.util.stream.Stream;
 
 @SuppressWarnings("serial")
 public class MainProgram extends Canvas implements Runnable, GameTimer {
-    public static final int CANVAS_WIDTH = 500;
+	public static final String CONFIG_FILE = "config.json";
+	public static Configuracao CONFIG; 
+	
+	public static final int CANVAS_WIDTH = 1000;
     public static final int CANVAS_HEIGHT = 700;
     public static final int INVADER_COLUMN_WIDTH = 50;
     public static final int INVADER_ROW_HEIGHT = 50;
     public static final int INVADER_WINDOW_MARGIN_TOP = 50;
     public static final int INVADER_WINDOW_MARGIN_LEFT = 50;
-    public static final int INVADER_NEXT_LINE_HEIGHT = 50;
-    private static final int INITIAL_SHOOTING_DELAY = 250;
+    public static int INVADER_NEXT_LINE_HEIGHT;
+    private static int INITIAL_SHOOTING_DELAY;
+    
+    private static int INVADER_ROW_QTD;
+    private static int INVADER_COLUMN_QTD;
 
     private JFrame frame;
     private boolean running = false;
@@ -63,7 +69,15 @@ public class MainProgram extends Canvas implements Runnable, GameTimer {
     private final GerenciadorVfx vfxManager;
 
     public MainProgram(){
-        setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
+        
+    	CONFIG = Configuracao.loadFromConfigFile();
+    	INITIAL_SHOOTING_DELAY = CONFIG.getInitialShootingDelay();
+    	invaderShootingCooldownPeriod = CONFIG.getInvaderShootingCooldownPeriod();
+    	INVADER_NEXT_LINE_HEIGHT = CONFIG.getInvaderNextLineHeight();
+    	INVADER_ROW_QTD = CONFIG.getInvaderRowQtd();
+    	INVADER_COLUMN_QTD = CONFIG.getInvaderColumnQtd();
+    	
+    	setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
 
         frame = new JFrame("Space Invaders :: Loading");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,8 +96,8 @@ public class MainProgram extends Canvas implements Runnable, GameTimer {
         this.heroShip = new HeroShip(this.eventResolution);
         this.allHeroProjectiles = new ArrayList<HeroProjectile>();
         this.allInvaderShips = new ArrayList<InvaderShip>();
-        for (int row = 0; row < 5; row++)
-            for(int column = 0; column < 7; column++)
+        for (int row = 0; row < INVADER_ROW_QTD; row++)
+            for(int column = 0; column < INVADER_COLUMN_QTD; column++)
                 this.allInvaderShips.add(new InvaderShip(row, column));
         this.allInvaderProjectiles = new ArrayList<InvaderProjectile>();
         this.allExplosionVFX = new ArrayList<Explosao>();
@@ -91,7 +105,7 @@ public class MainProgram extends Canvas implements Runnable, GameTimer {
         this.vfxManager = new GerenciadorVfx(this);
     }
 
-    public synchronized void start(){
+	public synchronized void start(){
         this.running = true;
         new Thread(this).start();
     }
